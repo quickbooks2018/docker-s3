@@ -4,7 +4,7 @@ WORKDIR /home/${USER}
 
 # Update and install packages
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y update --fix-missing && \
-    apt-get install -y automake autotools-dev g++ git libcurl4-gnutls-dev wget libfuse-dev libssl-dev libxml2-dev make pkg-config
+    apt-get install -y supervisor automake autotools-dev g++ git libcurl4-gnutls-dev wget libfuse-dev libssl-dev libxml2-dev make pkg-config
 
 # Clone and run s3fs-fuse
 RUN git clone https://github.com/s3fs-fuse/s3fs-fuse.git /tmp/s3fs-fuse && \
@@ -50,7 +50,9 @@ COPY mount.sh /home/${USER}/mount.sh
 RUN chmod +x /home/${USER}/mount.sh
 
 # Supervisor
+COPY supervisord.log /home/supervisord.log
 COPY supervisord.conf /etc/supervisord.conf
+RUN chown ${UID}:${GID} /home/supervisord.log
 
 # Switch to user
 USER ${UID}:${GID}
