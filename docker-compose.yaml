@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
     privileged: true
-    image: cloudgeeks-s3:latest
+    image: s3-bucket-mount:latest
     restart: unless-stopped
     env_file:
     - ./.env_aws
