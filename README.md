@@ -33,7 +33,7 @@
 - docker s3 mount 
 
 ```s3
-docker compose up --build
+docker compose up -d --build
 ```
 
 - DEBUG -o dbglevel=info -f -o curldbg
