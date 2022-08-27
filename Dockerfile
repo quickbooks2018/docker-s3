@@ -1,4 +1,5 @@
 FROM python:slim
+LABEL org.opencontainers.image.authors="info@cloudgeeks.ca"
 
 WORKDIR /home/${USER}
 
