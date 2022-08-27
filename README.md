@@ -29,6 +29,13 @@
 
 
 
+
+- docker s3 mount 
+
+```s3
+docker compose up --build
+```
+
 - DEBUG -o dbglevel=info -f -o curldbg
 - PATH  -o url="https://s3.us-east-1.amazonaws.com"
 - cat /etc/fuse.conf
