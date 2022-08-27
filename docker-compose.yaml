@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  s3fs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    privileged: true
+    image: cloudgeeks-s3:latest
+    restart: unless-stopped
+    env_file:
+    - ./.env_aws
+    devices:
+      - "/dev/fuse"
+    cap_add:
+      - SYS_ADMIN
+      - DAC_READ_SEARCH
+    cap_drop:
+      - NET_ADMIN
+    
