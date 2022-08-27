@@ -34,20 +34,8 @@ RUN apt-get update   && \
 RUN chmod a+r /etc/fuse.conf && \
     perl -i -pe 's/#user_allow_other/user_allow_other/g' /etc/fuse.conf
 
-# Copy credentials
-ENV SECRET_FILE_PATH=/home/${USER}/passwd-s3fs
-COPY ./passwd-s3fs $SECRET_FILE_PATH
-RUN chmod 600 $SECRET_FILE_PATH && \
-    chown ${USER}.${GROUP} $SECRET_FILE_PATH
-
-# Create mnt point
-ENV MNT_POINT_PATH=/home/${USER}
-RUN mkdir -p $MNT_POINT_PATH && \
-    chmod g+w $MNT_POINT_PATH
-
 # Execute
 COPY mount.sh /home/${USER}/mount.sh
-
 RUN chmod +x /home/${USER}/mount.sh
 
 # Supervisor
