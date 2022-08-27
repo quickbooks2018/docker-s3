@@ -8,8 +8,6 @@ services:
     restart: unless-stopped
     env_file:
     - ./.env_aws
-    volumes:
-      - ${HOME}/s3:/home/s3
     devices:
       - "/dev/fuse"
     cap_add:
