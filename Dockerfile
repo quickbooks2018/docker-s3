@@ -1,12 +1,6 @@
 FROM python:slim
 LABEL org.opencontainers.image.authors="info@cloudgeeks.ca"
 
-# Set user and group
-ENV USER='s3'
-ENV GROUP='s3'
-ENV UID='1000'
-ENV GID='1000'
-
 WORKDIR /home/${USER}
 
 # Update and install packages
@@ -22,6 +16,11 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get purge -y wget automake autotools-dev 
     apt-get -y autoremove --purge && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 
+# Set user and group
+ENV USER='s3'
+ENV GROUP='s3'
+ENV UID='1000'
+ENV GID='1000'
 
 RUN groupadd -g $GID $GROUP && \
     useradd -u $UID -g $GROUP -s /bin/sh -m $USER
